@@ -20,7 +20,7 @@ main {
   margin: 2rem;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
   column-gap: 2rem;
