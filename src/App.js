@@ -1,10 +1,12 @@
-import React from 'react';
+import PostsList from "./features/posts/PostsList";
+import AddPostForm from "./features/posts/AddPostForm";
 
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
+    <main className="App">
+      <PostsList />
+      <AddPostForm />
+    </main>
   );
 }
 
