@@ -14,13 +14,8 @@ const initialState = []
 
 // get users from the REST API
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  try {
-    const response = await axios.get(USERS_URL)
-    // you can return just response.data instead of a new array
-    return [...response.data]
-  } catch (error) {
-    return error.message
-  }
+  const response = await axios.get(USERS_URL)
+  return response.data
 })
 
 const usersSlice = createSlice({
@@ -29,8 +24,6 @@ const usersSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      // Here the state is completely overwritten, so 'users' are not accidentally
-      // added twice vs using state.push to spread the payload into the array
       return action.payload
     })
   }
