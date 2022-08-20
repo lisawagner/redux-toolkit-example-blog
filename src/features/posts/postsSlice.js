@@ -50,6 +50,18 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   }
 })
 
+// handle new posts with async thunk
+export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
+  try {
+    // initialPost data is the body of the post request sent to axios
+    const response = await axios.post(POSTS_URL, initialPost)
+    // the return will just be one record, not an array
+    return response.data
+  } catch (error) {
+    return error.message
+  }
+}) 
+
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
@@ -115,6 +127,21 @@ const postsSlice = createSlice({
     .addCase(fetchPosts.rejected, (state, action) => {
       state.status = 'failed'
       state.error = action.error.message
+  })
+  .addCase(addNewPost.fulfilled, (state, action) => {
+    // API provides userId as String, so here it is converted to Number
+    action.payload.userId = Number(action.payload.userId)
+    action.payload.date = new Date().toISOString
+    action.payload.reactions = {
+      thumbsUp: 0,
+      wow: 0,
+      heart: 0,
+      rocket: 0,
+      coffee: 0
+    }
+    console.log(action.payload);
+    // immerjs handles the mutation of the state with push
+    state.posts.push(action.payload)
   })
     // .addCase(addNewPost.fulfilled, (state, action) => {
       // FIX: This is a 'fix' for the API postIDs
