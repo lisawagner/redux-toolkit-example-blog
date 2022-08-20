@@ -131,7 +131,7 @@ const postsSlice = createSlice({
   .addCase(addNewPost.fulfilled, (state, action) => {
     // API provides userId as String, so here it is converted to Number
     action.payload.userId = Number(action.payload.userId)
-    action.payload.date = new Date().toISOString
+    action.payload.date = new Date().toISOString()
     action.payload.reactions = {
       thumbsUp: 0,
       wow: 0,
