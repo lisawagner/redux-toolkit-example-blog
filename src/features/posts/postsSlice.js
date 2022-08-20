@@ -42,24 +42,16 @@ const initialState = {
 
 // add async thunk to get posts
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  try {
-    const response = await axios.get(POSTS_URL)
-    return [...response.data]
-  } catch (err) {
-    return err.message
-  }
+  const response = await axios.get(POSTS_URL)
+  return response.data
 })
 
 // handle new posts with async thunk
 export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
-  try {
-    // initialPost data is the body of the post request sent to axios
-    const response = await axios.post(POSTS_URL, initialPost)
-    // the return will just be one record, not an array
-    return response.data
-  } catch (error) {
-    return error.message
-  }
+  // initialPost data is the body of the post request sent to axios
+  const response = await axios.post(POSTS_URL, initialPost)
+  // the return will just be one record, not an array
+  return response.data
 }) 
 
 const postsSlice = createSlice({
@@ -121,40 +113,39 @@ const postsSlice = createSlice({
         }
         return post
       })
-      // add posts tot the array
+      // add posts to the array
       state.posts = state.posts.concat(loadedPosts)
     })
     .addCase(fetchPosts.rejected, (state, action) => {
       state.status = 'failed'
       state.error = action.error.message
-  })
-  .addCase(addNewPost.fulfilled, (state, action) => {
-    // API provides userId as String, so here it is converted to Number
-    action.payload.userId = Number(action.payload.userId)
-    action.payload.date = new Date().toISOString()
-    action.payload.reactions = {
-      thumbsUp: 0,
-      wow: 0,
-      heart: 0,
-      rocket: 0,
-      coffee: 0
-    }
-    console.log(action.payload);
-    // immerjs handles the mutation of the state with push
-    state.posts.push(action.payload)
-  })
-    // .addCase(addNewPost.fulfilled, (state, action) => {
+    })
+    .addCase(addNewPost.fulfilled, (state, action) => {
       // FIX: This is a 'fix' for the API postIDs
       // Creating sortedPosts & assigning the id would not be needed
       // if the fake API returned accurate new post IDs
-      // const sortedPosts = state.posts.sort((a, b) => {
-      //   if(a.id > b.id) return 1
-      //   if(a.id < b.id) return -1
-      //   return 0
-      // })
-      // action.payload.id = sortedPosts[sortedPosts.length -1].id + 1
+      const sortedPosts = state.posts.sort((a, b) => {
+        if(a.id > b.id) return 1
+        if(a.id < b.id) return -1
+        return 0
+      })
+      action.payload.id = sortedPosts[sortedPosts.length -1].id + 1
       // end FIX
-    // })
+
+      // API provides userId as String, so here it is converted to Number
+      action.payload.userId = Number(action.payload.userId)
+      action.payload.date = new Date().toISOString()
+      action.payload.reactions = {
+        thumbsUp: 0,
+        wow: 0,
+        heart: 0,
+        rocket: 0,
+        coffee: 0
+      }
+      console.log(action.payload);
+      // immerjs handles the mutation of the state with push
+      state.posts.push(action.payload)
+    })
   }
 })
 
