@@ -13,5 +13,5 @@ A small scale blog app created to develop stronger skills with `redux-toolkit`. 
    3. Redux Thunk from RTK - async middleware for writing async logic with Redux
    4. Axios - to send async HTTP requests to the REST API endpoints
    5. JSONPlaceholder - free REST API for testing
-   6. Date FNS - Toolset for mainpulating 
+   6. Date FNS - Toolset for manpulating JS dates
 
