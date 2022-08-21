@@ -15,3 +15,8 @@ A small scale blog app created to develop stronger skills with `redux-toolkit`. 
    5. JSONPlaceholder - free REST API for testing
    6. Date FNS - Toolset for manpulating JS dates
 
+### Notes
+
+React v18 strict mode causing Redux to run 2x when component mounts for the first time, resulting in all records duped. I tried unsuccessfully to create a workaround. Options for now are:
+  - Don't use strict mode
+  - Downgrade to React 17.
