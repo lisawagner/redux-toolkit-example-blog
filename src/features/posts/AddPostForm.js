@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 // replace initial addPost with addNewPost async thunk
 // import { addPost } from './postsSlice'
 import { addNewPost } from './postsSlice'
@@ -14,6 +15,7 @@ const AddPostForm = () => {
   const [addRequestStatus, setAddRequestStatus] = useState('idle')
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const users = useSelector(selectAllUsers)
 
@@ -34,6 +36,7 @@ const AddPostForm = () => {
         setTitle('')
         setContent('')
         setUserId('')
+        navigate('/')
       } catch (error) {
         console.log('Failed to save the post', error);
       } finally {
