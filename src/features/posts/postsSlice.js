@@ -124,7 +124,10 @@ export const selectAllPosts = (state) => state.posts.posts
 export const getPostsStatus = (state) => state.posts.status
 export const getPostsError = (state) => state.posts.error
 
-// export that actions creator function automattically created by rtk
+export const selectPostById = (state, postId) =>
+  state.posts.posts.find(post => post.id === postId)
+
+// export the actions creator functions automatically created by rtk
 export const { addPost, addReaction } = postsSlice.actions
 
 export default postsSlice.reducer
