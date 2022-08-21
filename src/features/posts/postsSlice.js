@@ -1,4 +1,4 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { sub } from "date-fns";
 import axios from 'axios'
 
@@ -21,38 +21,24 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
   // initialPost data is the body of the post request sent to axios
   const response = await axios.post(POSTS_URL, initialPost)
-  // the return will just be one record, not an array
   return response.data
-}) 
+})
+
+// handle edit post with async thunk
+export const updatePost = createAsyncThunk('posts/updatePost', async (initialPost) => {
+  const { id } = initialPost
+  try {
+    const response = await axios.put(`${POSTS_URL}/${id}`, initialPost)
+    return response.data
+  } catch (error) {
+    return error.message
+  }
+})
 
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    addPost: {
-      reducer(state, action) {
-        // the payload is the form data we send /dispatch (action)
-        state.posts.push(action.payload)
-      },
-      prepare(title, content, userId) {
-        return {
-          payload: {
-            id: nanoid(),
-            title,
-            content,
-            date: new Date().toISOString(),
-            userId,
-            reactions: {
-              thumbsUp: 0,
-              wow: 0,
-              heart: 0,
-              rocket: 0,
-              coffee: 0
-            }
-          }
-        }
-      }
-    },
     // track the reactions count state. Immer handles the state mutation
     addReaction(state, action) {
       const { postId, reaction } = action.payload
@@ -116,6 +102,17 @@ const postsSlice = createSlice({
       console.log(action.payload);
       // immerjs handles the mutation of the state with push
       state.posts.push(action.payload)
+    })
+    .addCase(updatePost.fulfilled, (state, action) => {
+      if (!action.payload?.id) {
+        console.log('Update unsuccessful')
+        console.log(action.payload)
+        return
+      }
+      const { id } = action.payload
+      action.payload.date = new Date().toISOString()
+      const posts = state.posts.filter(post => post.id !== id)
+      state.posts = [...posts, action.payload]
     })
   }
 })
