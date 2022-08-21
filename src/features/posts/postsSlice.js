@@ -31,7 +31,8 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
     const response = await axios.put(`${POSTS_URL}/${id}`, initialPost)
     return response.data
   } catch (error) {
-    return error.message
+    // return error.message
+    return initialPost // only for Redux testing!
   }
 })
 
