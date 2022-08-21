@@ -17,7 +17,7 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   return response.data
 })
 
-// handle new posts with async thunk
+// handle create new posts with async thunk
 export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
   // initialPost data is the body of the post request sent to axios
   const response = await axios.post(POSTS_URL, initialPost)
@@ -32,6 +32,18 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
     return response.data
   } catch (error) {
     return error.message
+  }
+})
+
+// handle delete post with async thunk
+export const deletePost = createAsyncThunk('posts/deletePost', async (initialPost) => {
+  const { id } = initialPost;
+  try {
+      const response = await axios.delete(`${POSTS_URL}/${id}`)
+      if (response?.status === 200) return initialPost;
+      return `${response?.status}: ${response?.statusText}`;
+  } catch (err) {
+      return err.message;
   }
 })
 
@@ -103,6 +115,7 @@ const postsSlice = createSlice({
       // immerjs handles the mutation of the state with push
       state.posts.push(action.payload)
     })
+    // TODO: add a .pending case so initial post doesn't flash on update
     .addCase(updatePost.fulfilled, (state, action) => {
       if (!action.payload?.id) {
         console.log('Update unsuccessful')
@@ -114,6 +127,16 @@ const postsSlice = createSlice({
       const posts = state.posts.filter(post => post.id !== id)
       state.posts = [...posts, action.payload]
     })
+    .addCase(deletePost.fulfilled, (state, action) => {
+      if (!action.payload?.id) {
+          console.log('Delete could not complete')
+          console.log(action.payload)
+          return;
+      }
+      const { id } = action.payload;
+      const posts = state.posts.filter(post => post.id !== id);
+      state.posts = posts;
+  })
   }
 })
 

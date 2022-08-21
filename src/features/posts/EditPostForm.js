@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useNavigate } from 'react-router-dom'
 // slices
-import { selectPostById, updatePost } from "./postsSlice"
+import { selectPostById, updatePost, deletePost } from "./postsSlice"
 import { selectAllUsers } from "../users/usersSlice"
 
 const EditPostForm = () => {
@@ -24,8 +24,8 @@ const EditPostForm = () => {
         <h2>Post not found.</h2>
       </section>
     )
-  }
-
+  } 
+  
   // TODO: refactor shared form elements into reusable component
   const onTitleChange = (e) => setTitle(e.target.value)
   const onContentChange = (e) => setContent(e.target.value)
@@ -60,6 +60,22 @@ const EditPostForm = () => {
       {user.name}
     </option>
   ))
+
+  const onDeletePostClicked = () => {
+    try {
+      setAddRequestStatus('pending')
+      dispatch(deletePost({ id: post.id })).unwrap()
+
+      setTitle('')
+      setContent('')
+      setUserId('')
+      navigate('/')
+    } catch (err) {
+      console.log('Failed to delete the post', err)
+    } finally {
+      setAddRequestStatus('idle')
+    }
+}
 
   return (
     <section className='add-post-section'>
@@ -96,7 +112,14 @@ const EditPostForm = () => {
           className='btn'
           disabled={!canSave}
         >
-          Submit
+          Update Post
+        </button>
+        <button
+          type='button'
+          onClick={onDeletePostClicked}
+          className='btn'
+        >
+          Delete
         </button>
 
       </form>
