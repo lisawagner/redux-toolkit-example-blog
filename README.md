@@ -29,9 +29,12 @@ React v18 Strict Mode causes Redux to run 2x when component mounts for the first
   - Don't use Strict Mode
   - Downgrade to React 17.
 
+Possible Fix: load the API posts data immediately when the app loads.
+  :heavy_check_mark `store.dispatch(fetchPosts())` added to index.js
+
 ## Notes
 
-### `reducers` vs `extraRedicers`
+### `reducers` vs `extraReducers`
 The `reducers` property both creates an action creator function and responds to that action in the slice reducer. The `extraReducers` allow you to respond to an action in your slice reducer but does not create an action creator function.
 
 You will use `reducers` most of the time.
