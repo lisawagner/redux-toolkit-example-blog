@@ -6,11 +6,13 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { fetchUsers } from './features/users/usersSlice';
+import { fetchPosts } from './features/posts/postsSlice';
 // styles
 import './index.css';
 
-// fetch users(authors) immediately when app loads
+// fetch users(authors) and posts immediately when app loads
 store.dispatch(fetchUsers())
+store.dispatch(fetchPosts())
 
 const container = document.getElementById('root');
 const root = createRoot(container);
