@@ -2,11 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-![RTK Blog Posts List Page][logo]
-
-[logo]: src/assets/rtk-screen.png "Redux Toolkit Blog Page"
-
-<img src="src/assets/rtk-screen.png" alt="RTK Blog Posts List Page" width="100">
+<img src="src/assets/rtk-screen.png" alt="RTK Blog Posts List Page" width="300">
 
 ## Description
 
