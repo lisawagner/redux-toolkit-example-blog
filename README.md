@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-![RTK Blog Posts List Page][logo]
+![RTK Blog Posts List Page][logo] | width=100
 
 [logo]: src/assets/rtk-screen.png "Redux Toolkit Blog Page"
 
@@ -12,7 +12,7 @@ A small scale blog app created to develop stronger skills with `redux-toolkit`. 
 
 All CRUD operations are in the postSlice.js for the blog posts.
 
-[DEMO](https://redux-toolkit-example-blog.netlify.app/ | width=100 "RTK Blog Demo")
+[DEMO](https://redux-toolkit-example-blog.netlify.app/ "RTK Blog Demo")
 
 ### Tech Stack
 
