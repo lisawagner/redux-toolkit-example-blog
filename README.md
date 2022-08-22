@@ -35,18 +35,18 @@ Possible FIX: load the API posts data immediately when the app loads.
 
 ## Notes
 
-### 1. `reducers` vs `extraReducers`
+### `reducers` vs `extraReducers`
 The `reducers` property both creates an action creator function and responds to that action in the slice reducer. The `extraReducers` allow you to respond to an action in your slice reducer but does not create an action creator function.
 
 You will use `reducers` most of the time.
 
 `extraReducers` are used when dealing with an action that you have already defined elsewhere. The most common examples are responding to a `createAsyncThunk` action and responding to an action from another slice.
 
-### 2. Edit/Update Post
-When you create a new post with the fake API, updatePost will not edit it, since we can't actually write to the JSONplaceholder data.
+### Edit/Update Post
+When you create a new post with the fake API, updatePost will not edit it, since we can't actually write to the JSON Placeholder data.
 
-We can interact with the fake API but we cannot actually create a post there.
+   We can interact with the fake API but we cannot actually create a post there.
 
-WORKAROUND: instead of adding an error message when updating the post, return initialPost instead, so that the new post will 'appear' to be added to the API.
+**WORKAROUND***: Instead of adding an error message when updating the post, return `initialPost` instead, so that the new post will 'appear' to be added to the API.
 
-Server status 500 is sent back because it cannot update a post that doesn't exist at the API. Instead we update our Redux state correctly by adding 'return initialPost' instead of the error message. This is just for testing purposes.
+   `Server Status 500` is sent back because it cannot update a post that doesn't exist at the API. Instead we update our Redux state correctly by adding `return initialPost` instead of the error message. This is just for testing purposes.
