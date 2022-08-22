@@ -1,12 +1,17 @@
 # React Redux Mini Blog App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+![alt text][logo]
+
+[logo]: src/assets/issue-queue-diagram.png "Component Diagram"
 
 ## Description
 
 A small scale blog app created to develop stronger skills with `redux-toolkit`. I created async thunks with axios to hydrate a redux store with server data and to post data to the server API.
 
 All CRUD operations are in the postSlice.js for the blog posts.
+
+[DEMO](https://redux-toolkit-example-blog.netlify.app/ "RTK Blog Demo")
 
 ### Tech Stack
 
