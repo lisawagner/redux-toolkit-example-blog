@@ -22,6 +22,10 @@ root.render(
   //    for the first time resulting in all records duped. I tried
   //    unsuccessfully to create a workaround. Options for now are:
   //    Don't use strictmode, or downgrade to react 17.
+  // Possible Fix: load the API posts data immediately when the app loads.
+  //    `store.dispatch(fetchPosts())` added to index.js
+
+
   // <React.StrictMode>
     <Provider store={store}>
       <Router>
