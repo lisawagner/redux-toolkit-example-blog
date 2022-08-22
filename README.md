@@ -8,41 +8,41 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Description
 
-A small scale blog app created to develop stronger skills with `redux-toolkit`. I created async thunks with axios to hydrate a redux store with server data and to post data to the server API.
+A small scale blog app created to develop stronger skills with `redux-toolkit`. Async thunks created with axios to hydrate a redux store with server data and to post data to the server API.
 
 All CRUD operations are in the postSlice.js for the blog posts.
 
 [DEMO](https://redux-toolkit-example-blog.netlify.app/ "RTK Blog Demo")
 
-### Tech Stack
+### :octocat: Tech Stack
 
    1. React - Frontend
    2. Redux Toolkit (RTK) - for writing Redux logic / state management
    3. Redux Thunk from RTK - async middleware for writing async logic with Redux
    4. Axios - to send async HTTP requests to the REST API endpoints
-   5. JSONPlaceholder - free REST API for testing
+   5. {JSON} Placeholder - free REST API for testing
    6. Date FNS - Toolset for manpulating JS dates
 
-### Bugs and Known Issues
+### :lady_beetle: Bugs and Known Issues
 
 React v18 Strict Mode causes Redux to run 2x when component mounts for the first time, resulting in all records duped. I tried unsuccessfully to create a workaround. Options for now are:
   - Don't use Strict Mode
   - Downgrade to React 17.
 
-Possible Fix: load the API posts data immediately when the app loads.
+Possible FIX: load the API posts data immediately when the app loads.
 
    :heavy_check_mark: `store.dispatch(fetchPosts())` added to index.js
 
 ## Notes
 
-### `reducers` vs `extraReducers`
+### 1. `reducers` vs `extraReducers`
 The `reducers` property both creates an action creator function and responds to that action in the slice reducer. The `extraReducers` allow you to respond to an action in your slice reducer but does not create an action creator function.
 
 You will use `reducers` most of the time.
 
 `extraReducers` are used when dealing with an action that you have already defined elsewhere. The most common examples are responding to a `createAsyncThunk` action and responding to an action from another slice.
 
-### Edit/Update Post
+### 2. Edit/Update Post
 When you create a new post with the fake API, updatePost will not edit it, since we can't actually write to the JSONplaceholder data.
 
 We can interact with the fake API but we cannot actually create a post there.
