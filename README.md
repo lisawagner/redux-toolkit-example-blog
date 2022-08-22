@@ -25,7 +25,7 @@ All CRUD operations are in the postSlice.js for the blog posts.
 
 ### :lady_beetle: Bugs and Known Issues
 
-React v18 Strict Mode causes Redux to run 2x when component mounts for the first time, resulting in all records duped. I tried unsuccessfully to create a workaround. Options for now are:
+React v18 Strict Mode causes Redux to run 2x when component mounts for the first time, resulting in all records duped on the frontend. I tried unsuccessfully to create a workaround. Options for now are:
   - Don't use Strict Mode
   - Downgrade to React 17.
 
@@ -50,3 +50,8 @@ We can interact with the fake API but we cannot actually create a post there.
 **WORKAROUND**: Instead of adding an error message when updating the post, return `initialPost` instead, so that the new post will 'appear' to be added to the API.
 
 `Server Status 500` is sent back because it cannot update a post that doesn't exist at the API. Instead we update our Redux state correctly by adding `return initialPost` instead of the error message. This is just for testing purposes.
+
+## References
+
+   1. [Dave Gray RTK Tutorials](https://www.youtube.com/playlist?list=PL0Zuz27SZ-6M1J5I1w2-uZx36Qp6qhjKo "RTK Tutorials by Dave Gray")
+   2.  [Redux Essentials Tutorial](https://redux.js.org/tutorials/essentials/part-1-overview-concepts "Redux Essentials Tutorial")
