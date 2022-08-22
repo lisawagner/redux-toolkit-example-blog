@@ -12,7 +12,7 @@ A small scale blog app created to develop stronger skills with `redux-toolkit`. 
 
 All CRUD operations are in the postSlice.js for the blog posts.
 
-[DEMO](https://redux-toolkit-example-blog.netlify.app/ "RTK Blog Demo")
+[DEMO](https://redux-toolkit-example-blog.netlify.app/ | width=100 "RTK Blog Demo")
 
 ### Tech Stack
 
