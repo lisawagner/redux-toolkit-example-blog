@@ -30,7 +30,8 @@ React v18 Strict Mode causes Redux to run 2x when component mounts for the first
   - Downgrade to React 17.
 
 Possible Fix: load the API posts data immediately when the app loads.
-  :heavy_check_mark: `store.dispatch(fetchPosts())` added to index.js
+
+   :heavy_check_mark: `store.dispatch(fetchPosts())` added to index.js
 
 ## Notes
 
