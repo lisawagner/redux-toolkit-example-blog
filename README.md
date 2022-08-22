@@ -1,9 +1,10 @@
 # React Redux Mini Blog App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
-![alt text][logo]
 
-[logo]: src/assets/issue-queue-diagram.png "Component Diagram"
+![RTK Blog Posts List Page][logo]
+
+[logo]: src/assets/rtk-screen.png "Redux Toolkit Blog Page"
 
 ## Description
 
