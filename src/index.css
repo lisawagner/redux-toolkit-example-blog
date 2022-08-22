@@ -75,6 +75,11 @@ nav a, nav a:visited {
 nav a:hover, nav a:focus {
   color: pink;
 }
+/* Post List */
+.pageTitle {
+  margin: 0.5rem auto 2rem;
+  text-align: center;
+}
 
 /* Add Post Form */
 .add-post-section {
@@ -146,15 +151,22 @@ nav a:hover, nav a:focus {
   opacity: 0.3;
   pointer-events: none;
 }
-/* REACTION BUTTONS */
+/* POSTS EXCERPT */
+.excerpt {
+  margin-top: 0.5rem;
+}
 .postCredit {
+  display: flex;
+  column-gap: 0.5rem;
   font-size: 1rem;
+  margin: 0.75rem auto;
 }
 .reactionButton {
+  font-size: 1rem;
   margin: 0 0.15em 0 0;
   background: transparent;
   border: none;
-  font-size: 1rem;
+  
 }
 
 /* MEDIA QUERIES */
@@ -170,6 +182,9 @@ nav a:hover, nav a:focus {
   }
   .headerWrap h1 {
     font-size: 2.5rem;
+  }
+  .pageTitle {
+    text-align: left;
   }
   .add-post-section {
     width: 40%;

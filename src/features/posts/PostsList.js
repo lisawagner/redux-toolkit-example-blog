@@ -20,7 +20,7 @@ const PostsList = () => {
 
   return (
     <section>
-      <h2>Posts About Redux Toolkit</h2>
+      <h2 className="pageTitle">Posts About Redux Toolkit</h2>
       {content}
     </section>
   )

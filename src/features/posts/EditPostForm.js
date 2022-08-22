@@ -79,7 +79,7 @@ const EditPostForm = () => {
 
   return (
     <section className='add-post-section'>
-      <h2>Edit Post</h2>
+      <h2 className="pageTitle">Edit Post</h2>
       <form>
         <label htmlFor="postTitle">Post Title:</label>
         <input
@@ -92,7 +92,6 @@ const EditPostForm = () => {
         <label htmlFor="postAuthor">Author:</label>
           <select
             id='postAuthor'
-            // defaultValue={userId}
             value={userId}
             onChange={onAuthChange}
           >
