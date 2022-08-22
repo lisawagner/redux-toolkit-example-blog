@@ -43,7 +43,7 @@ You will use `reducers` most of the time.
 `extraReducers` are used when dealing with an action that you have already defined elsewhere. The most common examples are responding to a `createAsyncThunk` action and responding to an action from another slice.
 
 ### 2.  Edit/Update Post
-When you create a new post with the fake API, updatePost will not edit it, since we can't actually write to the JSON Placeholder data.
+When you create a new post with the fake API, `updatePost` will not edit it, since we can't actually write to the JSON Placeholder data.
 
 We can interact with the fake API but we cannot actually create a post there.
 
